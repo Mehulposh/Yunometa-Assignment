@@ -1,10 +1,10 @@
 //import the services class
-import TaskService from '../services/TaskServices'
+import TaskService from '../services/TaskServices.js'
 
 //creating the new instance of the services class
 const TaskServiceInstance = new TaskService();
 
-//contoller to fetch all tasks in db
+//controller to fetch all tasks in db
 const getTasks = async (req, res) => {
   try {
     //fetching all tasks in db
@@ -23,7 +23,7 @@ const getTasks = async (req, res) => {
 const createTask = async (req, res) => {
   try {
     //destructuring the title and description from the received request
-    const { title, description} = req.body;
+    const {title,description} = req.body;
 
     //creating new task 
     const newTask = await TaskServiceInstance.create({
@@ -40,7 +40,7 @@ const createTask = async (req, res) => {
   }
 };
 
-//constroller to update an existing task
+//controller to update an existing task
 const updateTask = async (req, res) => {
   try {
     //destructuring task id from the received params
@@ -68,7 +68,7 @@ const deleteTask = async (req, res) => {
     const result = await TaskServiceInstance.delete(id);
 
     //sending the response back with the status
-    res.status(204).send(result);
+    res.status(200).send(result);
   } catch (err) {
     //error response
     res.status(500).json({ error: err.message });
@@ -76,7 +76,7 @@ const deleteTask = async (req, res) => {
 };
 
 //exporting all the controllers
-module.exports = {
+export {
   getTasks,
   createTask,
   updateTask,
