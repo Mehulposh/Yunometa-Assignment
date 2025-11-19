@@ -4,6 +4,7 @@ import {
   createTask,
   updateTask,
   deleteTask,
+  getSingleTask,
 } from '../controllers/TaskController.js'
 
 
@@ -12,6 +13,9 @@ const router = Router();
 
 //route for fetching all tasks
 router.get("/", getTasks);
+
+//route for fetching single tasks
+router.get("/:id", getSingleTask);
 
 //route for creating a task
 router.post("/",createTask);

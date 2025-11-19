@@ -21,6 +21,14 @@ class TaskService {
     return { tasks, total };
   };
 
+  //service to get a particular task
+  findOne = async (id) => {
+    //fetching the task matching the id
+    const task = await Task.findById(id)
+    return task
+  }
+
+  
   //service to create a new task
   create = async (body) => {
     //creating the new task and saving in the db

@@ -30,6 +30,23 @@ const getTasks = async (req, res) => {
   }
 };
 
+
+//controller to fetch one task
+const getSingleTask = async (req,res) => {
+  try {
+    //destructuring task id from the received params
+    const { id } = req.params;
+
+    //sending the id and req body to the update service to update the task in db
+    const result = await TaskServiceInstance.findOne(id)
+
+    //sending the response back with the status
+    res.status(200).send(result);
+  } catch (error) {
+    //error response
+    res.status(500).json({ error: err.message });
+  }
+}
 //controller to create a new task
 const createTask = async (req, res) => {
   try {
@@ -89,6 +106,7 @@ const deleteTask = async (req, res) => {
 //exporting all the controllers
 export {
   getTasks,
+  getSingleTask,
   createTask,
   updateTask,
   deleteTask,
