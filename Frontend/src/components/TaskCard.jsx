@@ -34,19 +34,10 @@ const TaskCard = ({task}) => {
   };
 
 
-  // Display message when no tasks are available
-//   if (!tasks || tasks.length === 0) {
-//     return (
-//       <div className="text-center py-12 bg-gray-50 rounded-lg">
-//         <p className="text-gray-500 text-lg">No tasks found. Create your first task to get started!</p>
-//       </div>
-//     );
-//   }
-
 
 
  return(
-  <div className="bg-white rounded-lg hover:shadow-lg transition-shadow duration-300 shadow-md border border-gray-200 overflow-hidden mt-4 max-w-1/2">
+  <div className="bg-white rounded-lg hover:shadow-lg transition-shadow duration-300 shadow-md border border-gray-200 overflow-hidden mt-4 w-full max-w-xl">
     {/* Card Header with Status */}
     <div className="p-5 border-b border-gray-100">
       <div className="flex items-start justify-between">
