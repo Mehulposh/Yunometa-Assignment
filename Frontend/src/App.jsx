@@ -4,6 +4,7 @@ import LoadingIndicator from './components/LoadingIndicator'
 import TaskGrid from './components/TaskGrid'
 import { fetchTasks , deleteTask, updateTask, createTask} from './services/apiServices';
 import TaskModal from './components/TaskModal';
+import FilterButtons from './components/FilterButtons';
 
 function App() {
   
@@ -14,6 +15,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);     // Loader state
   const [isOpen, setIsOpen] = useState(false);           // Modal visibility
   const [isEditing, setIsEditing] = useState(null);      // Editing task (null = adding new)
+  const [filter, setFilter] = useState('ALL');           // 'ALL', 'PENDING', 'COMPLETED'
 
   
   // FETCH TASKS WITH PAGINATION
@@ -22,7 +24,7 @@ function App() {
     setIsLoading(true)
 
     try {
-      const response = await fetchTasks(page);
+      const response = await fetchTasks(page,filter);
       console.log(response);
       setTasks(response.tasks);
       setTotalPages(response.totalPages)
@@ -35,7 +37,7 @@ function App() {
     setIsLoading(false)
   }
     getTasks()
-  },[page])
+  },[page,filter])
 
   /**
    * DELETE TASK HANDLER
@@ -95,6 +97,23 @@ function App() {
     }
   }
 
+  // //Filter tasks client-side
+  // const filteredTasks = useMemo(() => {
+  //   if (filter === 'ALL') return tasks;
+  
+  //   return tasks.filter(task => 
+  //     filter === 'PENDING' 
+  //       ? task.status === 'PENDING' 
+  //       : task.status === 'COMPLETED'
+  //   );
+  // }, [tasks, filter]);
+
+
+  // // Recalculate totalPages based on filtered count (5 per page)
+  // const filteredTotalPages = useMemo(() => {
+  //   return Math.max(1, Math.ceil(filteredTasks.length / 5));
+  // }, [filteredTasks]);
+
   return(
     <main className='bg-gray-300'>
       {/* HEADER */}
@@ -106,8 +125,11 @@ function App() {
       {/* MAIN CONTENT */}
       <div className='flex flex-col items-center mt-5 w-full'>
          <p className=' underline text-3xl  bg-gray-300 px-3 py-1 rounded font-semibold'>Task Manager</p>
-
-         {/* TASK GRID */}
+          
+        {/* Fillter button */}
+          <FilterButtons filter={filter} setFilter={setFilter} setPage={setPage} />
+         
+        {/* TASK GRID */}
         <TaskGrid tasks={tasks} onDelete={onDelete} onEdit={onEdit}/>
 
          {/* PAGINATION CONTROLS */}
@@ -123,8 +145,8 @@ function App() {
           <p> Page <span className='bg-amber-500 px-2 py-1 underline'>{page}</span> of <span className='bg-amber-500 px-2 py-1 underline'>{totalPages}</span></p>
 
           <button 
-            className={`cursor-pointer px-3 py-1 text-lg rounded ${page === totalPages ? "bg-gray-300 text-black" : "bg-green-400"}`}
-            disabled = {page === totalPages }
+            className={`cursor-pointer px-3 py-1 text-lg rounded ${page >= totalPages ? "bg-gray-300 text-black" : "bg-green-400"}`}
+            disabled = {page >= totalPages }
             onClick={() => setPage(page + 1)}
           >
             Next

@@ -7,8 +7,8 @@ import {backend} from '../apiEndpoint/backendEndpoint'
 const API_URL = backend.endpoint ;
 
 //fetching the data from the backend
-export const fetchTasks = async (page) => {
-  const response = await axios.get(`${API_URL}?page=${page}&limit=5`);
+export const fetchTasks = async (page,filter = 'ALL') => {
+  const response = await axios.get(`${API_URL}?page=${page}}&filter=${filter}`);
   return response.data;
 };
 

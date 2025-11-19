@@ -6,18 +6,28 @@ import mongoose from "mongoose";
 //class for services
 class TaskService {
     //service to get all tasks in database
-  find = async (page,limit) => {
+  find = async (page,limit,filter) => {
     //calculating the skip to skip tasks in db
     const skip = (page - 1) * limit;
+    
+    //Build query based on filter
+    const query = {};
+
+    if(filter === 'PENDING'){
+      query.status = 'PENDING';
+    }else if (filter === 'COMPLETED'){
+      query.status = 'COMPLETED';
+    }
+    // if filter === 'ALL' → query = {} → match all
 
     //fetching all tasks from the db
-    const tasks = await Task.find({})
+    const tasks = await Task.find(query)
     .skip(skip)
     .limit(limit)
     .sort({ createdAt: -1 });
     
     //counting the total number of tasks in db
-    const total = await Task.countDocuments();
+    const total = await Task.countDocuments(query);
     return { tasks, total };
   };
 

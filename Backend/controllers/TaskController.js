@@ -10,9 +10,10 @@ const getTasks = async (req, res) => {
     // default values
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5;
+    const filter = req.query.filter || 'ALL'; 
 
     //fetching all tasks in db
-    const { tasks, total } = await TaskServiceInstance.find(page, limit);
+    const { tasks, total } = await TaskServiceInstance.find(page, limit,filter);
 
 
     //sending the response back with the status
