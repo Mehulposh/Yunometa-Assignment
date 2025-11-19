@@ -124,7 +124,7 @@ function App() {
 
       {/* MAIN CONTENT */}
       <div className='flex flex-col items-center mt-5 w-full'>
-         <p className=' underline text-3xl  bg-gray-300 px-3 py-1 rounded font-semibold'>Task Manager</p>
+         <p className=' underline text-3xl  bg-gray-300 px-3 py-1 rounded font-semibold'>Task List</p>
           
         {/* Fillter button */}
           <FilterButtons filter={filter} setFilter={setFilter} setPage={setPage} />
