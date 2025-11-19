@@ -61,7 +61,7 @@ const TaskModal = ({ isOpen, onClose,isEditing ,onSubmit}) => {
         <h2 className="text-xl font-semibold">{isEditing ? 'Edit Task' : 'Add New Task' }</h2>
 
          {/* Close Button */}
-        <button onClick={onClose} className="text-gray-500 hover:text-gray-700 text-xl">
+        <button onClick={onClose} className="cursor-pointer text-gray-500 hover:text-gray-700 text-xl">
           ✕
         </button>
       </div>
@@ -80,6 +80,7 @@ const TaskModal = ({ isOpen, onClose,isEditing ,onSubmit}) => {
                     className='border px-2 py-1 rounded'
                     value={title }
                     onChange={(e)=> setTitle(e.target.value)}
+                    required
                  />
             </label>
             {/* DESCRIPTION */}
@@ -90,6 +91,7 @@ const TaskModal = ({ isOpen, onClose,isEditing ,onSubmit}) => {
                     className='border px-2 py-1 rounded'
                     value={description }
                     onChange={(e)=> setDescription(e.target.value)}
+                    required
                  />
             </label>
 
@@ -111,7 +113,7 @@ const TaskModal = ({ isOpen, onClose,isEditing ,onSubmit}) => {
              {/* SUBMIT BUTTON */}
             <button 
                 type='submit'
-                className="mt-4 bg-blue-600 text-white py-2 rounded"
+                className="cursor-pointer mt-4 bg-blue-600 text-white py-2 rounded"
             >
                 {isEditing ? 'Update' : 'Add'}
             </button>

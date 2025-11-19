@@ -87,7 +87,7 @@ function App() {
         setTasks(refreshed.tasks);
         setPage(1); // optional but recommended
         setTotalPages(refreshed.totalPages);
-        
+
       }
     } catch (error) {
       console.error("Error while saving task:", error);
@@ -113,7 +113,7 @@ function App() {
          {/* PAGINATION CONTROLS */}
         <div className='flex items-center justify-center gap-4 py-3 mt-4 w-full bg-gray-400 font-semibold text-white'>
           <button 
-           className={`px-3 py-1 text-lg rounded ${page === 1 ? "bg-gray-300 text-black" : "bg-green-400"}`}
+           className={`cursor-pointer px-3 py-1 text-lg rounded ${page === 1 ? "bg-gray-300 text-black" : "bg-green-400"}`}
             disabled = {page === 1}
             onClick={() => setPage(page - 1)}
           >
@@ -123,7 +123,7 @@ function App() {
           <p>Page <span className='bg-amber-500 px-2 py-1 underline'>{page}</span> of {totalPages}</p>
 
           <button 
-            className={`px-3 py-1 text-lg rounded ${page === totalPages ? "bg-gray-300 text-black" : "bg-green-400"}`}
+            className={`cursor-pointer px-3 py-1 text-lg rounded ${page === totalPages ? "bg-gray-300 text-black" : "bg-green-400"}`}
             disabled = {page === totalPages }
             onClick={() => setPage(page + 1)}
           >
@@ -138,7 +138,7 @@ function App() {
           setIsEditing(null);  // Reset editing mode
           setIsOpen(true);     // Open modal
         }}
-        className='bg-blue-500 w-14 h-14 flex items-center justify-center rounded-full text-3xl text-white fixed bottom-10 right-10'
+        className='bg-blue-500 w-14 h-14 flex items-center justify-center rounded-full text-3xl text-white fixed bottom-10 right-10 cursor-pointer'
       >
         +
       </div>
