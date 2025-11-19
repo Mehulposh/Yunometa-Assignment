@@ -9,7 +9,7 @@ const getTasks = async (req, res) => {
   try {
     // default values
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const limit = parseInt(req.query.limit) || 5;
 
     //fetching all tasks in db
     const { tasks, total } = await TaskServiceInstance.find(page, limit);

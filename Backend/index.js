@@ -29,12 +29,12 @@ app.use(express.json())
 app.use('/api/tasks',TaskRoutes)
 
 //variables for the db connection
-const dbName = process.env.DB_NAME;
-const dbPort = process.env.DB_PORT;
-const dbHost = process.env.DB_HOST;
+// const dbName = process.env.DB_NAME;
+// const dbPort = process.env.DB_PORT;
+// const dbHost = process.env.DB_HOST;
 
 //connecting to the mongodb using mongoose
-mongoose.connect(`${dbHost}:${dbPort}/${dbName}`,{
+mongoose.connect(`${process.env.MONGODB_URL}`,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
