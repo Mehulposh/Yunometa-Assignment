@@ -9,7 +9,7 @@ import TaskCard from './TaskCard'
  * @param {Function} props.onEdit - Callback function when edit button is clicked
  * @param {Function} props.onDelete - Callback function when delete button is clicked
  */
-const TaskGrid = ({ tasks = []}) => {
+const TaskGrid = ({ tasks = [], onDelete,onEdit}) => {
      // Display message when no tasks are available
   if (!tasks || tasks.length === 0) {
     return (
@@ -26,8 +26,10 @@ const TaskGrid = ({ tasks = []}) => {
         <div className="flex flex-col items-center w-full px-4 ">
             {tasks.map(task => (
                 <TaskCard 
-                    key={task.id}
+                    key={task._id}
                     task={task}
+                    onDelete={onDelete}
+                    onEdit={onEdit}
                 />
             ))}
         </div>
