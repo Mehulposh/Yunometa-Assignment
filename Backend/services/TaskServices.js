@@ -1,5 +1,7 @@
 //importing the model for the services
 import Task from '../model/TaskModel.js'
+import mongoose from "mongoose";
+
 
 //class for services
 class TaskService {
@@ -44,6 +46,10 @@ class TaskService {
 
   //service to delete a existing task
   delete = async (id) => {
+     // Validate ObjectId before calling Mongo
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+       throw new Error("Invalid Task ID");
+    }
     //deleting the task from the db
     const deletedTask = await Task.findByIdAndDelete(id);
 
