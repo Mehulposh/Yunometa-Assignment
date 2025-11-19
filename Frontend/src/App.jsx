@@ -96,7 +96,7 @@ function App() {
   }
 
   return(
-    <main>
+    <main className='bg-gray-300'>
       {/* HEADER */}
       <Header />
 
@@ -105,7 +105,7 @@ function App() {
 
       {/* MAIN CONTENT */}
       <div className='flex flex-col items-center mt-5 w-full'>
-         <p className=' underline text-3xl bg-gray-300 px-3 py-1 rounded font-semibold'>Task Manager</p>
+         <p className=' underline text-3xl  bg-gray-300 px-3 py-1 rounded font-semibold'>Task Manager</p>
 
          {/* TASK GRID */}
         <TaskGrid tasks={tasks} onDelete={onDelete} onEdit={onEdit}/>
@@ -120,7 +120,7 @@ function App() {
             Prev
           </button>
 
-          <p>Page <span className='bg-amber-500 px-2 py-1 underline'>{page}</span> of {totalPages}</p>
+          <p> Page <span className='bg-amber-500 px-2 py-1 underline'>{page}</span> of <span className='bg-amber-500 px-2 py-1 underline'>{totalPages}</span></p>
 
           <button 
             className={`cursor-pointer px-3 py-1 text-lg rounded ${page === totalPages ? "bg-gray-300 text-black" : "bg-green-400"}`}

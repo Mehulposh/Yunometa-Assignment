@@ -52,7 +52,7 @@ const TaskModal = ({ isOpen, onClose,isEditing ,onSubmit}) => {
     <Modal
         isOpen={isOpen}
         onRequestClose={onClose}
-        overlayClassName="fixed inset-0 bg-black/50 flex items-center justify-center"
+        overlayClassName="w-full fixed inset-0 bg-black/50 flex items-center justify-center"
         className="bg-white p-6 rounded-md w-[90%] max-w-md shadow-xl outline-none"
     >
 
@@ -66,6 +66,7 @@ const TaskModal = ({ isOpen, onClose,isEditing ,onSubmit}) => {
         </button>
       </div>
 
+      
       {/* Body */}
       <div>
         <form 
@@ -119,6 +120,7 @@ const TaskModal = ({ isOpen, onClose,isEditing ,onSubmit}) => {
             </button>
         </form>
       </div>
+      
     </Modal>
   )
 }
