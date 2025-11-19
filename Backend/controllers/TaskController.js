@@ -7,11 +7,22 @@ const TaskServiceInstance = new TaskService();
 //controller to fetch all tasks in db
 const getTasks = async (req, res) => {
   try {
+    // default values
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
     //fetching all tasks in db
-    const tasks = await TaskServiceInstance.find();
+    const { tasks, total } = await TaskServiceInstance.find(page, limit);
+
 
     //sending the response back with the status
-    res.status(200).json(tasks);
+   res.status(200).json({
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit),
+      tasks
+    });
 
   } catch (err) {
     //error response

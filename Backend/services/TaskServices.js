@@ -4,10 +4,19 @@ import Task from '../model/TaskModel.js'
 //class for services
 class TaskService {
     //service to get all tasks in database
-  find = async () => {
+  find = async (page,limit) => {
+    //calculating the skip to skip tasks in db
+    const skip = (page - 1) * limit;
+
     //fetching all tasks from the db
-    const tasks = await Task.find({});
-    return tasks;
+    const tasks = await Task.find({})
+    .skip(skip)
+    .limit(limit)
+    .sort({ createdAt: -1 });
+    
+    //counting the total number of tasks in db
+    const total = await Task.countDocuments();
+    return { tasks, total };
   };
 
   //service to create a new task
