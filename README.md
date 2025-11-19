@@ -19,11 +19,14 @@
 Open `http://localhost:5173` (or the port Vite reports).
 
 ## Endpoints
-- `GET /api/tasks?page=1&limit=10` — paginated list
+- `GET /api/tasks?page=1&filter=PENDING` — filtered list
+- `GET /api/tasks/:id` — get single task
 - `POST /api/tasks` — create
-- `PUT /api/tasks/update/:id` — update
-- `DELETE /api/tasks/delete/:id` — delete
+- `PUT /api/tasks/:id` — update
+- `DELETE /api/tasks/:id` — delete
 
+## Notes
+- Pagination done in the backend by default
 
 ## Features
 - Add new Task
